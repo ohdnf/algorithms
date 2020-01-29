@@ -1,9 +1,7 @@
 T = int(input())
 for test_case in range(1, T + 1):
     a, b, c, d = map(int, input().split())
-    if abs(b-c) > 1:
-        result = 'impossible'
-    elif a>0 and d>0 and b == c == 0:
+    if abs(b-c) > 1 or a>0 and d>0 and b == c == 0:
         result = 'impossible'
     else:
         n = a + b + c + d + 1
