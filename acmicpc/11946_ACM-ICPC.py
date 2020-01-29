@@ -13,11 +13,16 @@ input = lambda: sys.stdin.readline().rstrip()
 # 참가 팀 수, 문제 수, 채점로그의 개수
 n, m, q = map(int, input().split())
 
-# 팀: 푼 문제 수, 총 시간
-teams = [[[0]*m, [0]*m] for _ in range(n)]
+# 팀: 푼 문제, 총 시간
+teams = [[0]*3 for _ in range(n)]
 
 # 채점정보: 경과 시간, 팀 번호, 문제 번호, 채점 결과
 for i in range(q):
-    elapsed, team_num, que_num, result = input().split()
+    elapsed, team_num, prob_num, result = input().split()
+    elapsed = int(elapsed)
+    team_num = int(team_num) - 1
+    prob_num = int(prob_num) - 1
     if result == 'AC':
+        pass
+    else:
         pass
