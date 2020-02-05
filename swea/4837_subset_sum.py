@@ -2,8 +2,8 @@ A = list(range(1, 13))
 subsets = []
 
 for num in range(2**12):
-    part = [A[idx] for idx, status in enumerate(list(format(num, '012b'))) if int(status)]
-    subsets.append(part)
+    subset = [A[idx] for idx, status in enumerate(list(format(num, '012b'))) if int(status)]
+    subsets.append(subset)
 
 T = int(input())
 for t in range(1, 1+T):
