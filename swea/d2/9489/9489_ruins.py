@@ -13,13 +13,10 @@ def find(area):
 T = int(input())
 for tc in range(1, T+1):
     n, m = map(int, input().split())
-    area = [input().replace(' ', '') for _ in range(n)]
-    # width = find(area)
-    vertical = [''.join(line) for line in zip(*area)]
-    print('#{0}\n{1}'.format(tc, vertical))
-    for line in vertical:
-        print(line.split('0'))
-    
-    # height = find(vertical)
-    # result = max(width, height)
-    # print('#{0} {1}'.format(tc, result))
+    # area = [input().replace(' ', '') for _ in range(n)]
+    area = [''.join(input().split()) for _ in range(n)]
+    width = find(area)
+    vertical = [''.join(line) for line in zip(*area)]    
+    height = find(vertical)
+    result = max(width, height)
+    print('#{0} {1}'.format(tc, result))
