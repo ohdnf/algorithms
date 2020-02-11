@@ -1,21 +1,29 @@
-seven_from_nine = 9*8 / (2*1)
+import sys
+input = lambda: sys.stdin.readline()
 
-def hundred(dwarfs):
-    for a in range(3):
-        for b in range(a+1, 4):
-            for c in range(b+1, 5):
-                for d in range(c+1, 6):
-                    for e in range(d+1, 7):
-                        for f in range(e+1, 8):
-                            for g in range(f+1, 9):
-                                total = dwarfs[a] + dwarfs[b] + dwarfs[c] + dwarfs[d] + dwarfs[e] + dwarfs[f] + dwarfs[g]
-                                if total == 100:
-                                    return [dwarfs[a], dwarfs[b], dwarfs[c], dwarfs[d], dwarfs[e], dwarfs[f], dwarfs[g]]
+n = int(input())
+progression = list(map(int, input().split()))
 
-dwarfs = []
-for _ in range(9):
-    dwarfs.append(int(input()))
-
-seven = hundred(dwarfs)
-for dwarf in seven:
-    print(dwarf)
+max_asc = max_dsc = tmp_asc = tmp_dsc = 1
+for i in range(1, n):
+    before = progression[i-1]
+    after = progression[i]
+    if before > after:
+        tmp_dsc += 1
+        if tmp_asc > max_asc:
+            max_asc = tmp_asc
+        tmp_asc = 1
+    elif before < after:
+        tmp_asc += 1
+        if tmp_dsc > max_dsc:
+            max_dsc = tmp_dsc
+        tmp_dsc = 1
+    else:
+        tmp_asc += 1
+        tmp_dsc += 1
+if tmp_asc > max_asc:
+    max_asc = tmp_asc
+if tmp_dsc > max_dsc:
+    max_dsc = tmp_dsc
+result = max(max_asc, max_dsc)
+print(result)

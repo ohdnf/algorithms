@@ -16,7 +16,7 @@ input = lambda: sys.stdin.readline()
 def find(dwarfs):
     nine = len(dwarfs)
     for i in range(nine-1):
-        for j in range(i+1, nine):
+        for j in range(i, nine-1):
             tmp = list(dwarfs)
             del tmp[i]
             del tmp[j]
