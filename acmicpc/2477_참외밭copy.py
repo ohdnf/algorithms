@@ -4,28 +4,23 @@ input = lambda: sys.stdin.readline()
 k = int(input())
 
 news = []
+check = ['s' for _ in range(6)]
+index = []
 length = []
-east = []
-west = []
-south = []
-north = []
 
 for i in range(6):
     d, l = map(int, input().split())
+    if d in news:
+        check[news.index(d)] = 'd1'
+        check[i] = 'd2'
     news.append(d)
+    index.append(i)
     length.append(l)
-    if d == 1:
-        east.append([i, l])
-    elif d == 2:
-        west.append([i, l])
-    elif d == 2:
-        south.append([i, l])
-    elif d == 2:
-        north.append([i, l])
 
-
-
-
+print(news)
+print(check)
+print(index)
+print(length)
 
 # i1 = index[long_d[0]][0]
 # i2 = index[long_d[1]][0]

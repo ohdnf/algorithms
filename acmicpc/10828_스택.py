@@ -9,10 +9,10 @@ for _ in range(n):
     if cmd == 'push':
         res[len(res):] = [int(num[0])]
     elif cmd == 'pop':
-        print(res.pop() if any(res) else -1)
+        print(res.pop() if res else -1)
     elif cmd == 'size':
         print(len(res))
     elif cmd == 'empty':
-        print(0 if any(res) else 1)
+        print(0 if res else 1)
     elif cmd == 'top':
-        print(res[-1] if any(res) else -1)
+        print(res[-1] if res else -1)
