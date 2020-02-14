@@ -9,6 +9,6 @@ for _ in range(k):
     if n:
         ledger.append(n)
     else:
-        del ledger[-1]
+        del ledger[-1]  # 0인 경우 any(stack) == True 보장
 
 print(sum(ledger))

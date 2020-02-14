@@ -1,31 +1,24 @@
 import sys
 input = lambda: sys.stdin.readline().strip()
+# input = lambda: sys.stdin.readline()
+# 위와 같이 입력하면 문자열 맨 끝에 줄바꿈(\n) 문자가 추가된다.
 
 t = int(input())
 for _ in range(t):
     ps = input()
-    # stack = list()
     stack = 0
-    vps = True
     for p in ps:
-        # print(f'p: {p}')
         if p == '(':
-            # stack.append(p)
             stack += 1
         else:
-            # if stack:
-            #     del stack[-1]
-            # else:
-            #     vps = False
-            #     break
             if stack > 0:
                 stack -= 1
             else:
-                vps = False
+                print('NO')
                 break
-
-        # print(f'stack: {stack}')
-    if stack or not vps:
-        print('NO')
+    # for문에서 break를 안 만나면 else문 실행
     else:
-        print('YES')
+        if stack:
+            print('NO')
+        else:
+            print('YES')

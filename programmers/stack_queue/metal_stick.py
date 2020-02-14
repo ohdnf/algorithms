@@ -12,9 +12,9 @@ def solution(arrangement):
     stack = ['(']
     sticks = 0
     arrangement = arrangement[1:]
-    for ps in arrangement:
+    for p in arrangement:
         if stack:
-            if ps == ')':
+            if p == ')':
                 if stack[-1] == '(':
                     answer += sticks
                 else:
@@ -23,7 +23,7 @@ def solution(arrangement):
             else:
                 if stack[-1] == '(':
                     sticks += 1
-        stack.append(ps)
+        stack.append(p)
     return answer
 
 # def solution(arrangement):
@@ -47,3 +47,22 @@ def solution(arrangement):
 #             stack.append(ps)
 #         before = ps
 #     return answer
+
+# GodTaeWoo
+def solution(arrangement):
+    answer = 0
+    stack = 0
+    for index, i in enumerate(arrangement):
+        if i == ')' :
+            stack -= 1
+            if arrangement[index-1] == ')':
+                answer += 1
+            else:
+                answer += stack
+        else:
+            stack += 1
+    return answer
+
+
+if __name__ == "__main__":
+    print(solution('()(((()())(())()))(())'))

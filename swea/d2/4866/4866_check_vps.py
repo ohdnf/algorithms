@@ -7,7 +7,7 @@ for t in range(1, T+1):
     stack = list()
     good = 1
     for s in string:
-        if s == '[' or s == '{' or s == '(':
+        if s == '{' or s == '(':
             stack.append(s)
         elif s == ')':
             if stack:
