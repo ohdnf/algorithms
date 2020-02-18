@@ -1,20 +1,29 @@
-from collections import deque
 import sys
 input = lambda: sys.stdin.readline().rstrip()
 
-string = deque(input())
-last = cursor = len(string)
+string = list(input())
 m = int(input())
-
+stack = []
 for _ in range(m):
     cmd, *char = input().split()
     if cmd == 'L':
-        pass
+        if string:
+            stack.append(string.pop())
+        else:
+            pass
     elif cmd == 'D':
-        pass
+        if stack:
+            string.append(stack.pop())
+        else:
+            pass
     elif cmd == 'B':
-        pass
+        if string:
+            string.pop()
+        else:
+            pass
     elif cmd == 'P':
-        pass
+        string.append(char[0])
+    # print(string, stack)
 
-sys.stdout.write(string)
+string += reversed(stack)
+print(*string, sep='')
