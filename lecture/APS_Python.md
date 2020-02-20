@@ -157,6 +157,8 @@ Algorithm(Advanced) Problem Solving
 
 3. 스택이 공백이 될 때까지 `2.`를 반복
 
+
+
 Python 구현
 
 ```python
@@ -264,6 +266,81 @@ print(result)
 
     3. 만일 그 노드가 유망하지 않으면, 그 노드의 부모 노드로 돌아가서 검색을 계속
 
+- 부분집합 구하기(백트래킹)
+
+```python
+def process_solution(a, k):
+    print('(', end='')
+    for i in range(k+1):
+        if a[i]:
+            print(i, end=' ')
+    print(')')
+
+
+def backtrack(a, k, ipt):
+    global MAXCANDIDATES
+    c = [0] * MAXCANDIDATES
+
+    if k == ipt:
+        process_solution(a, k)  # 답일 때 원하는 작업
+        print(a)
+    else:
+        k += 1
+        ncandidates = construct_candidates(a, k, ipt, c)
+        for i in range(ncandidates):
+            a[k] = c[i]
+            backtrack(a, k, ipt)
+
+
+def construct_candidates(a, k, ipt, c):
+    c[0] = True
+    c[1] = False
+    return 2
+
+
+MAXCANDIDATES = 4
+NMAX = 4
+a = [0] * NMAX
+backtrack(a, 0, 3)
+```
+
+- 부분집합 구하기(순열)
+
+```python
+def backtrack(a, k, ipt):
+    global MAXCANDIDATES
+    c = [0] * MAXCANDIDATES
+
+    if k == ipt:
+        print(a)
+    else:
+        k += 1
+        ncandidates = construct_candidates(a, k, ipt, c)
+        for i in range(ncandidates):
+            a[k] = c[i]
+            backtrack(a, k, ipt)
+
+
+def construct_candidates(a, k, ipt, c):
+    in_perm = [False] * NMAX
+
+    for i in range(1, k):
+        in_perm[a[i]] = True
+    
+    ncandidates = 0
+    for i in range(1, ipt+1):
+        if in_perm[i] == False:
+            c[ncandidates] = i
+            ncandidates += 1
+    return ncandidates
+
+
+MAXCANDIDATES = 4
+NMAX = 4
+a = [0] * NMAX
+backtrack(a, 0, 3)
+```
+
 
 
 #### 부분집합의 합 구하기
@@ -271,25 +348,42 @@ print(result)
 #### `{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}`의 powerset 중 원소의 합이 10인 부분집합을 구하시오.
 
 ```python
-def powerset(n, k, s):
-    if n == k:
-        if s == 10:
-            result.append(tmp)
-    elif s > 10:
-        return # Back-tracking
-    else:
-        chk[n] = 1
-        tmp.append(n)
-        powerset(n+1, k, s+arr[n])
-        tmp.pop()
-        chk[n] = 0
-        powerset(n+1, k, s)
+def powerset(i, k, s):
+    remain = sum([j for j in range(1, k) if not used[j]])
 
-arr = list(range(1, 11))
-chk = [0 for _ in range(len(arr))]
+    if i == k:
+        if s == MAX:
+            res.append(tmp[:])
+        return
+    elif s == MAX:
+        res.append(tmp[:])
+        return
+    elif s > MAX:
+        return
+    elif s + arr[i] > MAX:
+        return
+    elif s + arr[i] + remain < MAX:
+        return
+    else:
+        used[i] = 1
+        tmp.append(arr[i])
+        powerset(i+1, k, sum(tmp))
+        tmp.pop()
+        used[i] = 0
+        powerset(i+1, k, sum(tmp))
+
+
+MAX = 10
+arr = list(range(11))   # 편한 인덱싱을 위해 앞에 0을 추가
+# used = [0 for _ in range(len(arr)+1)]
+used = [0] * (len(arr)+1)
 tmp = list()
-result = list()
+res = list()
+powerset(1, len(arr), 0)
+print(res)
 ```
+
+
 
 ### Quick Sort
 
@@ -314,6 +408,7 @@ def quickSort(a, begin, end):
         quickSort(a, begin, p-1)
         quickSort(a, p+1, end)
 ```
+
 
 
 ## 6. Queue
