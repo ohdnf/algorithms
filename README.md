@@ -2,7 +2,7 @@
 
 ### 1. SWEA
 
-[SW Expert Academy 문제](https://swexpertacademy.com/main/code/problem/problemList.do)
+[SW Expert Academy](https://swexpertacademy.com/main/code/problem/problemList.do)
 
 ### 2. BOJ
 
@@ -16,4 +16,4 @@
 
 누구나 자료 구조와 알고리즘 / 제이 웬그로우 저 / 심지현 옮김 / 길벗
 
-일부 코드 파이썬으로 구현
+일부 코드 실습 파이썬으로 구현
