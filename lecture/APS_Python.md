@@ -38,6 +38,127 @@ Algorithm(Advanced) Problem Solving
 
 ## 2. Array II
 
+### zigzag 순회
+
+```python
+for i in range(len(arr)):
+    for j in range(len(arr[0])):
+        arr[i][j + (m-1-2*j) * (i%2)]
+        # 필요한 연산 수행
+```
+
+### 전치행렬
+
+```python
+for i in range(len(arr)):
+    for j in range(len(arr[0])):    # len(arr) == len(arr[0])
+        if i < j:
+            arr[i][j], arr[j][i] = arr[j][i], arr[i][j]
+```
+
+### 비트 연산자를 사용한 부분집합 생성
+
+```python
+arr = [3, 6, 7, 1, 5, 4]
+
+n = len(arr)
+
+for i in range(1<<n):   # 1<<n: 부분집합의 개수
+    for j in range(n+1):    # 원소의 수만큼 비트를 비교함
+        if i & (i<<j):  # i의 j번째 비트가 1이면 j번째 원소 출력
+            print(arr[j], end=', ')
+    print()
+print()
+```
+
+### Binary Search
+
+```python
+def binary_search(arr, key):
+    start = 0
+    end = len(arr) - 1
+    while start <= end:
+        middle = (start + end) // 2
+        if arr[middle] == key:  # 검색 성공
+            return True
+        elif arr[middle] > key:
+            end = middle - 1
+        else:
+            start = middle + 1
+    return False    # 검색 실패
+```
+
+Recursion 활용
+
+```python
+def binary_search(arr, left, right, key):
+    if left > right:
+        return False
+    else:
+        middle = (left + right) // 2
+        if key == arr[middle]:
+            return True
+        elif key < arr[middle]:
+            return binary_search(arr, left, middle-1, key)
+        else:
+            return binary_search(arr, middle+1, right, key)
+```
+
+### Selection algorithm
+
+- k번째로 작은 원소를 찾는 알고리즘
+
+    ```python
+    def select(arr, k):
+        for i in range(0, k):
+            min_index = i
+            for j in range(i+1, len(arr)):
+                if arr[min_index] > arr[j]:
+                    min_index = j
+            arr[i], arr[min_index] = arr[min_index], arr[i]
+        return arr[k-1]
+    ```
+
+### 달팽이
+
+```python
+def snail(row, col):
+    width, height = col, row
+    arr = [[0 for _ in range(width)] for _ in range(height)]
+
+    num = 1
+    y = 0
+    x = -1
+    position = 1
+
+    # (0,1) -> (1,0) -> (0,-1) -> (-1,0)
+    while num <= row*col:
+        for _ in range(width):
+            x += position
+            arr[y][x] = num
+            num += 1
+        height -= 1
+        for _ in range(height):
+            y += position
+            arr[y][x] = num
+            num += 1
+        width -= 1
+        position *= -1
+    
+    print(*arr, sep='\n')
+    return arr
+
+l = snail(5, 4)
+```
+
+```shell
+[1, 2, 3, 4]
+[14, 15, 16, 5]
+[13, 20, 17, 6]
+[12, 19, 18, 7]
+[11, 10, 9, 8]
+```
+
 
 
 ## 3. String

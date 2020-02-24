@@ -1,20 +1,27 @@
-# arr = [True] * 10
-# for i in range(0, 10, 2):
-#     arr[i] = False
-# print(sum(arr))
+def snail(row, col):
+    width, height = col, row
+    arr = [[0 for _ in range(width)] for _ in range(height)]
 
-# Permutation
+    num = 1
+    y = 0
+    x = -1
+    position = 1
 
-# arr = ['00', '00', '10', '11']
-#
-# for i1 in arr:
-#     for i2 in arr:
-#         if i2 != i1:
-#             for i3 in arr:
-#                 if i3 != i1 and i3 != i2:
-#                     print(i1, i2, i3)
-#                     # for i4 in arr:
-#                     #     if i4 != i1 and i4 != i2 and i4 != i3:
-#                     #         print(i1, i2, i3, i4)
-#
+    # (0,1) -> (1,0) -> (0,-1) -> (-1,0)
+    while num <= row*col:
+        for _ in range(width):
+            x += position
+            arr[y][x] = num
+            num += 1
+        height -= 1
+        for _ in range(height):
+            y += position
+            arr[y][x] = num
+            num += 1
+        width -= 1
+        position *= -1
+    
+    print(*arr, sep='\n')
+    return arr
 
+l = snail(5, 4)
