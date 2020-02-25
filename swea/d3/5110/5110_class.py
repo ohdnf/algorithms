@@ -41,6 +41,13 @@ class LinkedList:
                 curr = curr.nxt
         return curr
     
+    def index(self, value):
+        curr = self.head
+        idx = 0
+        while curr.nxt:
+            if curr.value == value:
+                return
+    
     def __repr__(self):
         result = ''
         curr = self.head
