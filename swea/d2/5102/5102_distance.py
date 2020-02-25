@@ -15,6 +15,7 @@ def distance(node, goal, move):
         for nxt in graph[node]:
             if not visited[nxt]:
                 distance(nxt, goal, move+1)
+        visited[node] = False
 
 t = int(input())
 for test_case in range(1, t+1):
