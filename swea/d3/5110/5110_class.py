@@ -4,50 +4,72 @@ import time
 start = time.time()
 
 class Node:
-    def __init__(self, value, pre=None, nxt=None):
-        self.value = value
-        self.pre = pre
+    def __init__(self, val, nxt=None):
+        self.val = val
         self.nxt = nxt
 
 class LinkedList:
     def __init__(self, node):
         self.head = node
         self.tail = node
+        self.length = 1
+    
+    def get(self, idx):
+        curr = self.head
+        curr_idx = 0
 
-    def append(self, node):
-        node.pre = self.tail
-        self.tail.nxt = node
-        self.tail = node
+        while curr_idx < idx:
+            curr = curr.nxt
+            curr_idx += 1
+        
+        return curr.val
     
-    def insert(self, target, linkedList):
-        if target.nxt != None:
-            front = target.pre
-            back = target.nxt
-            linkedList.head.pre = front
-            front.nxt = linkedList.head
-            linkedList.tail.nex = back
-            back.pre = linkedList.tail
-            self.tail = linkedList.tail
-        else:
-            target.nxt = linkedList.head
-            linkedList.head.pre = target
-    
-    def find(self, value):
+    def index(self, val):
         curr = self.head
-        while curr.nxt:
-            if curr.value > value:
-                return curr
+        curr_idx = 0
+
+        while curr:
+            if curr.val == val:
+                return curr_idx
             else:
-                curr = curr.nxt
-        return curr
-    
-    def index(self, value):
+                if curr.nxt:
+                    curr = curr.nxt
+                    curr_idx += 1
+                else:
+                    raise IndexError
+
+    def insert(self, idx, val):
         curr = self.head
-        idx = 0
-        while curr.nxt:
-            if curr.value == value:
-                return
+        curr_idx = 0
+
+        while curr_idx < idx:
+            curr = curr.nxt
+            curr_idx += 1
+        
+        new = Node(val)
+        new.nxt = curr.nxt
+        curr.nxt = new
+
+        self.length += 1
     
+    def append(self, val):
+        curr = self.head
+        curr_idx = 0
+        
+        while curr.nxt:
+            curr = curr.nxt
+            curr_idx += 1
+        
+        new = Node(val)
+        curr.nxt = new
+        self.length += 1
+    
+    def appendleft(self, val):
+        new = Node(val)
+        new.nxt = self.head
+        self.head = new
+        self.length += 1
+        
     def __repr__(self):
         result = ''
         curr = self.head
@@ -61,18 +83,22 @@ t = int(input())
 for test_case in range(1, t+1):
     n, m = map(int, input().split())
     tmp = list(map(int, input().split()))
-    first = tmp[0]
-    prog = LinkedList(Node(first))
-    for i in range(1, n):
-        prog.append(Node(tmp[i]))
-    for _ in range(m):
+    first = Node(tmp[0])
+    prog = LinkedList(first)    # Initialize Linked list
+    for i in range(0, n-1):
+        prog.insert(i, Node(tmp[i]))
+    for _ in range(m-1):
         tmp = list(map(int, input().split()))
+        # Find larger value than tmp[0]
         first = tmp[0]
-        incoming = LinkedList(Node(first))
-        for i in range(1, n):
-            incoming.append(Node(tmp[i]))
-        target = prog.find(first)
-        prog.insert(target, incoming)        
+        insert_idx = -1
+        for i in range(prog.length):
+            if prog.get(i) > first:
+                insert_idx = i
+                break
+        if insert_idx == 0:
+            prog.appendleft()
+        
     
     print('#{} {}'.format(test_case, prog))
 
