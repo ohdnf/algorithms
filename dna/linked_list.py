@@ -1,10 +1,10 @@
 class Node:
-    def __init__(self, value, nxt=None):
-        self.value = value
+    def __init__(self, val, nxt=None):
+        self.val = val
         self.nxt = nxt
     
     def __repr__(self):
-        return f'{self.value}'
+        return f'{self.val}'
 
 
 class LinkedList:
@@ -19,7 +19,41 @@ class LinkedList:
                 raise IndexError
             curr = curr.nxt
             curr_idx += 1
-        return curr.value
+        return curr.val
+    
+    def index(self, val):
+        curr = self.head
+        curr_idx = 0
+        while curr:
+            if val == curr.val:
+                return curr_idx
+            else:
+                curr = curr.nxt
+                curr_idx += 1
+        return None
+
+    def insert(self, idx, val):
+        curr = self.head
+        curr_idx = 0
+
+        while curr_idx < idx:
+            curr = curr.nxt
+            curr_idx += 1
+        
+        new = Node(val)
+        new.nxt = curr.nxt
+        curr.nxt = new
+
+    def delete(self, idx):
+        curr = self.head
+        curr_idx = 0
+        
+        while curr_idx < idx - 1:
+            curr = curr.nxt
+            curr_idx += 1
+        
+        node_after_deleted_node = curr.nxt.nxt
+        curr.nxt = node_after_deleted_node
 
     def __repr__(self):
         curr = self.head
@@ -41,3 +75,4 @@ if __name__ == "__main__":
     l1 = LinkedList(n1)
     print(l1)
     print(l1.read(0))
+    print(l1.index(3))
