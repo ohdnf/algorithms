@@ -8,6 +8,10 @@ class Node:
 
 class LinkedList:
     def __init__(self, arr):
+        """
+        This linked-list needs an array to init an instance.
+        Each single element in the array will be linked in order.
+        """
         self.head = Node(arr[0])
         before = self.head
         for i in range(1, len(arr)):
@@ -16,6 +20,10 @@ class LinkedList:
             before = curr
 
     def insert(self, idx):
+        """
+        Insert new node in the specified index.
+        Value of the new node will be a sum of value of pre- and post-node.
+        """
         curr = self.head
         curr_idx = 0
 
@@ -24,21 +32,25 @@ class LinkedList:
             curr_idx += 1
         
         insert_val = 0
-        if curr.nxt:
+        if curr.nxt:      # Insert middle
             insert_val = curr.val + curr.nxt.val
-        else:
+        else:               # Insert last
             insert_val = curr.val + self.head.val
         new = Node(insert_val)
         new.nxt = curr.nxt
         curr.nxt = new
     
     def __repr__(self):
+        """
+        Print only 10 values of each node in descending order.
+        """
+        result = list()
         curr = self.head
-        result = str(curr.val)
+        result.append(str(curr.val))
         while curr.nxt:
             curr = curr.nxt
-            result += ' ' + str(curr.val)
-        return result
+            result.append(str(curr.val))
+        return ' '.join(result[-1:-11:-1])
 
 
 t = int(input())
@@ -47,8 +59,12 @@ for test_case in range(1, t+1):
     numbers = LinkedList(list(map(int, input().split())))
     idx = 0
     for _ in range(k):
-        idx = (idx + m) % (n - 1)
+        # Select an index before the index in which new node will be inserted
+        idx += m - 1
+        if idx > n - 1:
+            idx -= n
         numbers.insert(idx)
+        idx += 1
         n += 1
 
     print('#{} {}'.format(test_case, numbers))

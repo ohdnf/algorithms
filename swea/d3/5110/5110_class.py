@@ -4,102 +4,58 @@ import time
 start = time.time()
 
 class Node:
-    def __init__(self, val, nxt=None):
+    def __init__(self, val, pre=None, nxt=None):
         self.val = val
+        self.pre = pre
         self.nxt = nxt
 
 class LinkedList:
-    def __init__(self, node):
-        self.head = node
-        self.tail = node
-        self.length = 1
-    
-    def get(self, idx):
+    def __init__(self, arr):
+        self.head = Node(arr[0])
+        curr = self.head
+        for i in range(1, len(arr)):
+            new = Node(arr[i], curr)
+            curr.nxt = new
+            curr = new
+        self.tail = curr
+
+    def search(self, idx):
         curr = self.head
         curr_idx = 0
-
         while curr_idx < idx:
             curr = curr.nxt
             curr_idx += 1
-        
-        return curr.val
+        return curr
     
-    def index(self, val):
+    def find_bigger_than(self, val):
         curr = self.head
         curr_idx = 0
-
-        while curr:
-            if curr.val == val:
+        while curr.nxt:
+            if curr.val > val:
                 return curr_idx
             else:
-                if curr.nxt:
-                    curr = curr.nxt
-                    curr_idx += 1
-                else:
-                    raise IndexError
-
-    def insert(self, idx, val):
-        curr = self.head
-        curr_idx = 0
-
-        while curr_idx < idx:
-            curr = curr.nxt
-            curr_idx += 1
-        
-        new = Node(val)
-        new.nxt = curr.nxt
-        curr.nxt = new
-
-        self.length += 1
-    
-    def append(self, val):
-        curr = self.head
-        curr_idx = 0
-        
-        while curr.nxt:
-            curr = curr.nxt
-            curr_idx += 1
-        
-        new = Node(val)
-        curr.nxt = new
-        self.length += 1
-    
-    def appendleft(self, val):
-        new = Node(val)
-        new.nxt = self.head
-        self.head = new
-        self.length += 1
+                curr = curr.nxt
+                curr_idx += 1
+        return curr_idx
         
     def __repr__(self):
         result = ''
         curr = self.head
         while curr.nxt:
-            result += str(curr.value) + ' '
+            result += str(curr.val) + ' '
             curr = curr.nxt
-        result += str(curr.value)
+        result += str(curr.val)
         return result
 
 t = int(input())
 for test_case in range(1, t+1):
     n, m = map(int, input().split())
-    tmp = list(map(int, input().split()))
-    first = Node(tmp[0])
-    prog = LinkedList(first)    # Initialize Linked list
-    for i in range(0, n-1):
-        prog.insert(i, Node(tmp[i]))
+    seq = LinkedList(list(map(int, input().split())))
     for _ in range(m-1):
-        tmp = list(map(int, input().split()))
-        # Find larger value than tmp[0]
-        first = tmp[0]
-        insert_idx = -1
-        for i in range(prog.length):
-            if prog.get(i) > first:
-                insert_idx = i
-                break
-        if insert_idx == 0:
-            prog.appendleft()
-        
+        incoming = LinkedList(list(map(int, input().split())))
+        first = incoming.head.val
+    # 추후 수정
     
-    print('#{} {}'.format(test_case, prog))
+    print('#{} {}'.format(test_case, seq))
 
 print(time.time() - start, 's')
