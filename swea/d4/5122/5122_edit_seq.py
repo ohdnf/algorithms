@@ -25,11 +25,11 @@ class DoubleLinkedList:
             self.length += 1
     
     def search(self, idx):
+        if idx > self.length:
+            pass
         curr = self.head
         curr_idx = 0
         while curr_idx < idx:
-            if curr == None:
-                return None
             curr = curr.nxt
             curr_idx += 1
         return curr
@@ -41,7 +41,7 @@ class DoubleLinkedList:
             target.pre = new
             new.nxt = target
             self.head = new
-        else:
+        else:   # 이후 에러 발생
             new = Node(val, target.pre, target)
             target.pre.nxt = new
             target.pre = new
