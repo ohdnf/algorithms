@@ -1,18 +1,13 @@
-import sys
-sys.stdin = open('input.txt')
-
 def scan(month, price):
-    global min_price
-    global three
+    global min_price, three
     if month >= 12:
         if price < min_price:
             min_price = price
-    elif price > min_price:
-        return
+    # elif price > min_price:
+    #     return
     else:
         scan(month+3, price - price_three[month] + three)
         scan(month+1, price)
-
 t = int(input())
 for test_case in range(1, t+1):
     day, one, three, year = map(int, input().split())
