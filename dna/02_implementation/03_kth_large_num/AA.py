@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('in1.txt')
+input = lambda: sys.stdin.readline()
 
 def get_three(idx, total, limit, hap):
     if idx == len(cards):
