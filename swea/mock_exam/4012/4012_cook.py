@@ -1,22 +1,32 @@
 import sys
 sys.stdin = open('input.txt')
 
-def combi(i, k, s, n, ingr):
-    if i == k:
-        pass
+def dfs(length, half, number, last):
+    if length == half:
+        ingr_a = [num for num in range(n) if check[num]]
+        ingr_b = [num for num in range(n) if not check[num]]
+        s_a = s_b = 0
+        for i in ingr_a:
+            for j in ingr_a:
+                s_a += synergy[i][j]
+        for i in ingr_b:
+            for j in ingr_b:
+                s_b += synergy[i][j]
+        result.append(abs(s_a - s_b))
+    elif number == last:
+        return
     else:
-        for j in range(s, n-k+i+1):
-            combi(i+1, k, j+1, n, ingr+set(j))
+        check[number] = True
+        dfs(length+1, half, number+1, last)
+        check[number] = False
+        dfs(length, half, number+1, last)
 
 t = int(input())
 for test_case in range(1, t+1):
     n = int(input())
     synergy = [list(map(int, input().split())) for _ in range(n)]
-    print('#{} '.format(test_case))
-    # print(*synergy, sep='\n')
+    check = [False for _ in range(n)]
     groceries = list(range(n))
-    a = list()
-    b = list()
-    # n개의 식재료를 두 그룹으로 나눈다 ***
-    
-    # 그룹 내에서 식재료마다 다른 식재료와의 시너지를 계산한다
+    result = list()
+    dfs(0, int(n/2), 0, n)
+    print('#{} {}'.format(test_case, min(result)))
