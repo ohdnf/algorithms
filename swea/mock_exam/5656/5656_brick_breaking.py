@@ -7,14 +7,14 @@ def arrange():
 def shoot(shots, bricks):
     global w, h
     q = list()
-    for col in top:
+    for row in top:
         # 맨 위 벽돌 선택
-        for row in range(h):
+        for col in range(w):
             if bricks[row][col]:
                 q.append((row, col))
                 break
         else:
-            return False
+            return
         # ㄹㅇ 벽돌 깨기
         while q:
             x, y = q.pop(0)
@@ -27,18 +27,18 @@ def shoot(shots, bricks):
                     if 0<=nx<h and 0<=ny<w and bricks[nx][ny]:
                         q.append((nx, ny))
         # 벽돌 정리
-        for row in range(w):
-            for col in range(h):
+        for row in range(h):
+            for col in range(w):
                 if bricks[row][col] == 0:
-                    bricks[row] = bricks[row].pop(col) + bricks[row]
+                    bricks[row] = [bricks[row].pop(col)] + bricks[row]
 
 def dfs(shot, last):
     global w, h, min_bricks
     if shot == last:
         # 벽돌 복사
-        bricks = [[0]*h for _ in range(w)]
-        for col in range(w):
-            for row in range(h):
+        bricks = [[0]*w for _ in range(h)]
+        for row in range(h):
+            for col in range(w):
                 bricks[row][col] = orig[row][col]
         # 벽돌 깨기
         shoot(last, bricks)
@@ -49,8 +49,8 @@ def dfs(shot, last):
         if min_bricks > rest:
             min_bricks = rest
     else:
-        for col in range(w):
-            top[shot] = col
+        for row in range(h):
+            top[shot] = row
             dfs(shot+1, last)
 
 t = int(input())
@@ -61,4 +61,4 @@ for test_case in range(1, t+1):
     min_bricks = h * w
     top = [0] * n
     dfs(0, n)
-    print('#{}'.format(test_case))
+    print('#{} {}'.format(test_case, min_bricks))
