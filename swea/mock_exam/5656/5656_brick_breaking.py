@@ -48,6 +48,8 @@ def dfs(shot, last):
             rest += w - line.count(0)
         if min_bricks > rest:
             min_bricks = rest
+    elif min_bricks == 0:
+        return
     else:
         for row in range(h):
             top[shot] = row
