@@ -1,9 +1,6 @@
 import sys
 sys.stdin = open('input.txt')
 
-def arrange():
-    return
-
 def shoot(shots, bricks):
     global w, h
     q = list()
