@@ -71,7 +71,7 @@ for tc in range(1, T+1):
         if(edit[0] == 'I'):
             add(edit[2], int(edit[1])) 
         elif(edit[0] == 'D'):
-            delete(int(edit[1]));
+            delete(int(edit[1]))
         elif(edit[0] == 'C'):
             exchange(edit[2], int(edit[1]))
             
