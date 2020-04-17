@@ -16,36 +16,35 @@ class LinkedList:
         self.length = 0
     
     def append(self, val):
-        if self.head is None:   # 빈 리스트일 경우
+        if self.length == 0:   # 빈 리스트일 경우
             new = Node(val)
             self.head = new
             self.tail = new
-        else:
-            curr = self.head
-            while curr.nxt:
-                curr = curr.nxt
-            new = Node(val, curr)
-            curr.nxt = new
-            self.tail = new
+            self.length += 1
+            return
+        new = Node(val, self.tail)
+        self.tail.nxt = new
+        self.tail = new
         self.length += 1
         return
     
     def extend(self, linkedList):
         first = linkedList.head # 삽입할 수열의 첫 번째 노드
         last = linkedList.tail  # 삽입할 수열의 마지막 노드
-        self.length += linkedList.length    # 길이 추가
         # 노드 탐색
         curr = self.head
         curr_idx = 0
         while curr_idx < self.length:
             if curr.val > first.val:
                 # 현재 노드 앞에 수열 끼워 넣기
-                first.pre = curr.pre
                 last.nxt = curr
-                curr.pre.nxt = first
-                curr.pre = last
                 if curr_idx == 0:
                     self.head = first
+                else:
+                    first.pre = curr.pre
+                    curr.pre.nxt = first
+                    curr.pre = last
+                self.length += linkedList.length
                 return
             curr = curr.nxt
             curr_idx += 1
@@ -53,6 +52,8 @@ class LinkedList:
         first.pre = curr
         curr.nxt = first
         self.tail = last
+        self.length += linkedList.length
+        return
     
     def index(self, idx):
         curr = self.head
