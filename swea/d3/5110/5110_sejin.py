@@ -40,7 +40,7 @@ class LinkedList:
     def insertlist(self, new_list):
         insert_num = new_list.first()
         num = self.first()
-        # 수열 2의 첫 숫자 보다 큰 수자를 수열 1에서 찾아 그 앞에 수열 2를 끼워 넣는다.
+        # 수열 2의 첫 숫자 보다 큰 숫자를 수열 1에서 찾아 그 앞에 수열 2를 끼워 넣는다.
         for _ in range(self.num_of_data):
             if num > insert_num:
                 self.before.link = new_list.head.link
