@@ -8,6 +8,11 @@ for test_case in range(1, t+1):
     for _ in range(n):
         s, e = map(int, input().split())
         incomings.append([s, e])
-    result = 0
-    print(incomings)
-    print('#{} {}'.format(test_case, result))
+    incomings.sort(key=lambda t: (t[1], t[0]))
+    first_truck = incomings.pop(0)
+    trucks = [first_truck, ]
+    while incomings:
+        truck = incomings.pop(0)
+        if trucks[-1][1] <= truck[0]:
+            trucks.append(truck)
+    print('#{} {}'.format(test_case, len(trucks)))
