@@ -3,13 +3,13 @@ sys.stdin = open('input.txt')
 
 MAXSIZE = 720    # 6! = 720
 
-def swap(prize, i, j):
+def swap(prize, f, b):
     arr = [0] * digits
     for i in range(digits-1, -1, -1):
         arr[i] = prize % 10
         prize //= 10
     
-    arr[i], arr[j] = arr[j], arr[i]
+    arr[f], arr[b] = arr[b], arr[f]
 
     res = 0
     for i in range(digits):
@@ -20,11 +20,11 @@ def swap(prize, i, j):
 def dfs(prize, final, stage):
     global result
 
-    for i in range(MAXSIZE):
-        if memo[stage][i] == 0:
-            memo[stage][i] = prize
+    for k in range(MAXSIZE):
+        if memo[stage][k] == 0:
+            memo[stage][k] = prize
             break
-        elif memo[stage][i] == prize:
+        elif memo[stage][k] == prize:
             return
 
     if stage == final:
