@@ -1,28 +1,20 @@
+from collections import deque
 import sys
-#sys.stdin=open("input.txt", "r")
-n=int(input())
-a=list(map(int, input().split()))
-lt=0
-rt=n-1
-last=0
-res=""
-tmp=[]
-while lt<=rt:
-    if a[lt]>last:
-        tmp.append((a[lt], 'L'))
-    if a[rt]>last:
-        tmp.append((a[rt], 'R'))
-    tmp.sort()
-    if len(tmp)==0:
-        break;
+input = lambda: sys.stdin.readline()
+
+n = int(input())
+nums = deque(map(int, input().split()))
+
+last = 0
+res = ''
+
+while nums and (nums[0] > last or nums[-1] > last):
+    if (nums[0] < last < nums[-1]) or (last < nums[-1] < nums[0]):
+        res += 'R'
+        last = nums.pop()
     else:
-        res=res+tmp[0][1]
-        last=tmp[0][0]
-        if tmp[0][1]=='L':
-            lt=lt+1
-        else:
-            rt=rt-1
-    tmp.clear()
+        res += 'L'
+        last = nums.popleft()
 
 print(len(res))
 print(res)
