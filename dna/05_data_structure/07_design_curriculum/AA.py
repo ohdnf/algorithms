@@ -1,28 +1,21 @@
-import sys
 from collections import deque
-#sys.stdin=open("input.txt", "r")
-need=input()
-n=int(input())
-for i in range(n):
-    plan=input()
-    dq=deque(need)
-    for x in plan:
-        if x in dq:
-            if x!=dq.popleft():
-                print("#%d NO" %(i+1))
+import sys, copy
+input = lambda: sys.stdin.readline()
+
+required = input()
+n = int(input())
+for case in range(1, n+1):
+    req = deque(required)
+    curr = input()
+    for sub in curr:
+        if sub in req:
+            if sub != req.popleft():
+                print(f"#{case} NO")
                 break
     else:
-        if len(dq)==0:
-            print("#%d YES" %(i+1))
+        if req:
+            print(f"#{case} NO")
         else:
-            print("#%d NO" %(i+1))
+            print(f"#{case} YES")
 
-
-
-
-
-
-
-
-
-
+    
