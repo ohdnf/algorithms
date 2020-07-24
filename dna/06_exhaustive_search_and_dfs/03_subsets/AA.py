@@ -1,20 +1,19 @@
 import sys
-#sys.stdin=open("input.txt", "r")
-def DFS(v):
-    if v==n+1:
-        for i in range(1, n+1):
-            if ch[i]==1:
-                print(i, end=' ')
+input = lambda: sys.stdin.readline()
+
+n = int(input())
+chk = [False] * (n+1)
+
+def dfs(idx, last):
+    if idx > last:
+        for num in range(1, n+1):
+            if chk[num]:
+                print(num, end=' ')
         print()
     else:
-        ch[v]=1
-        DFS(v+1)
-        ch[v]=0
-        DFS(v+1)
+        chk[idx] = True
+        dfs(idx+1, last)
+        chk[idx] = False
+        dfs(idx+1, last)
 
-if __name__=="__main__":
-    n=int(input())
-    ch=[0]*(n+1)
-    DFS(1)
-    
-
+dfs(1, n)
