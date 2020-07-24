@@ -1,21 +1,37 @@
 import sys
-#sys.stdin=open("input.txt", "r")
-def DFS(L, sum):
-    if sum>total//2:
-        return
-    if L==n:
-        if sum==(total-sum):
-            print("YES")
-            sys.exit(0)
+input = lambda: sys.stdin.readline().strip()
+
+n = int(input())
+g = list(map(int, input().split()))
+chk = {num: False for num in g}
+flag = False
+
+# def dfs(idx):
+#     global flag
+#     if idx == n:
+#         lt = sum([l for l in g if chk[l]])
+#         rt = sum([r for r in g if not chk[r]])
+#         if lt == rt:
+#             flag = True
+#     else:
+#         num = g[idx]
+#         chk[num] = True
+#         dfs(idx+1)
+#         chk[num] = False
+#         dfs(idx+1)
+
+def dfs(idx, g1, g2):
+    global flag
+    if idx == n:
+        if g1 == g2:
+            flag = True
     else:
-        DFS(L+1, sum+a[L])
-        DFS(L+1, sum)
+        dfs(idx+1, g1+g[idx], g2)
+        dfs(idx+1, g1, g2+g[idx])
 
-if __name__=="__main__":
-    n=int(input())
-    a=list(map(int, input().split()))
-    total=sum(a)
-    DFS(0, 0)
-    print("NO")
+dfs(0, 0, 0)
 
-    
+if flag:
+    print('YES')
+else:
+    print('NO')
