@@ -64,11 +64,11 @@
     - [X] 라이브러리를 이용한 조합
     - [X] 인접행렬
     - [X] 경로 탐색(그래프 DFS: Depth First Search)
-- [] 7. DFS, BFS 활용 (3/17)
+- [] 7. DFS, BFS 활용 (4/17)
     - [X] 최대점수 구하기(DFS)
     - [X] 휴가(DFS)
     - [X] 양팔저울(DFS)
-    - [] 동전 바꿔주기(DFS)
+    - [X] 동전 바꿔주기(DFS)
     - [] 동전 분배하기(DFS)
     - [] 알파코드(DFS)
     - [] 송아지 찾기(BFS: Breadth First Search)
