@@ -64,7 +64,7 @@
     - [X] 라이브러리를 이용한 조합
     - [X] 인접행렬
     - [X] 경로 탐색(그래프 DFS: Depth First Search)
-- [] 7. DFS, BFS 활용 (7/17)
+- [] 7. DFS, BFS 활용 (8/17)
     - [X] 최대점수 구하기(DFS)
     - [X] 휴가(DFS)
     - [X] 양팔저울(DFS)
@@ -72,7 +72,7 @@
     - [X] 동전 분배하기(DFS)
     - [X] 알파코드(DFS)
     - [X] 송아지 찾기(BFS: Breadth First Search)
-    - [] 사과나무(BFS)
+    - [X] 사과나무(BFS)
     - [] 미로의 최단거리 통로(BFS)
     - [] 미로 탐색(DFS)
     - [] 등산 경로(DFS)
