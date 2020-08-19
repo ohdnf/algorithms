@@ -64,7 +64,7 @@
     - [X] 라이브러리를 이용한 조합
     - [X] 인접행렬
     - [X] 경로 탐색(그래프 DFS: Depth First Search)
-- [] 7. DFS, BFS 활용 (15/17)
+- [] 7. DFS, BFS 활용 (16/17)
     - [X] 최대점수 구하기(DFS)
     - [X] 휴가(DFS)
     - [X] 양팔저울(DFS)
@@ -80,7 +80,7 @@
     - [X] 섬나라 아일랜드(BFS)
     - [X] 안전영역(DFS)
     - [X] 토마토(BFS)
-    - [] 사다리 타기(DFS)
+    - [X] 사다리 타기(DFS)
     - [] 피자배달거리(DFS)
 - [] 8. Dynamic Programming (0/14)
     - [] 동적계획법이란? 네트워크 선 자르기(Bottom-up)
