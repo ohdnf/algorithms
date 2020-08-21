@@ -82,8 +82,8 @@
     - [X] 토마토(BFS)
     - [X] 사다리 타기(DFS)
     - [X] 피자배달거리(DFS)
-- [] 8. Dynamic Programming (0/14)
-    - [] 동적계획법이란? 네트워크 선 자르기(Bottom-up)
+- [] 8. Dynamic Programming (1/14)
+    - [X] 동적계획법이란? 네트워크 선 자르기(Bottom-up)
     - [] 네트워크 선 자르기(Top-down: 재귀, 메모이제이션)
     - [] 도전과제
     - [] 최대 부분 증가수열(LIS: Longest Increasing Subsequence)
