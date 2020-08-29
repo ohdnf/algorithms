@@ -82,7 +82,7 @@
     - [X] 토마토(BFS)
     - [X] 사다리 타기(DFS)
     - [X] 피자배달거리(DFS)
-- [] 8. Dynamic Programming (11/14)
+- [] 8. Dynamic Programming (12/14)
     - [X] 동적계획법이란? 네트워크 선 자르기(Bottom-up)
     - [X] 네트워크 선 자르기(Top-down: 재귀, 메모이제이션)
     - [X] 도전과제
@@ -94,7 +94,7 @@
     - [X] 가방문제(Knapsack algorithm)
     - [X] 동전교환(Knapsack algorithm)
     - [X] 최대점수 구하기(Knapsack algorithm)
-    - [] 플로이드-와샬(그래프 최단거리)
+    - [X] 플로이드-와샬(그래프 최단거리)
     - [] 회장뽑기(플로이드-와샬 응용)
     - [] 위상정렬(그래프)
 - [] 9. 블록 게임 만들기(총 7회): 시뮬레이션(격자탐색과 DFS 활용) (0/9)
