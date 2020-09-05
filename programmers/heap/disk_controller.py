@@ -2,8 +2,23 @@ from collections import deque as dq
 from math import floor
 import heapq as hq
 
-
 def solution(jobs):
+    tasks = dq(sorted([(x[1], x[0]) for x in jobs], key=lambda x: (x[1], x[0])))
+    waiting = []
+    hq.heappush(waiting, tasks.popleft())
+    current_time, total_response_time = 0, 0
+    while len(waiting) > 0:
+        dur, arr = hq.heappop(waiting)
+        current_time = max(current_time + dur, arr + dur)
+        total_response_time += current_time - arr
+        while len(tasks) > 0 and tasks[0][1] <= current_time:
+            hq.heappush(waiting, tasks.popleft())
+        if len(tasks) > 0 and len(waiting) == 0:
+            hq.heappush(waiting, tasks.popleft())
+    return total_response_time // len(jobs)
+
+
+def my_solution(jobs):
     """
     작업 요청 시점, 작업 소요 시간
     작업 요청부터 종료까지 걸린 시간 = (작업 소요 시간) + (작업 시작 시간) - (작업 요청 시간)
