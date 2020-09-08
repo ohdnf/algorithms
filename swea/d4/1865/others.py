@@ -30,7 +30,7 @@ for tc in range(1, int(input())+1):
 
 def toSet(num):
     return { idx for idx, val in enumerate(bin(num)[::-1]) if val == '1' }
-  
+
 T = int(input())
 for test in range(1, T+1):
     N = int(input())
