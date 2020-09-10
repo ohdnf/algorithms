@@ -1,7 +1,7 @@
 from collections import deque as dq
 import sys
 
-sys.setrecursionlimit(10**5)
+sys.setrecursionlimit(10**4)
 
 
 class Node:

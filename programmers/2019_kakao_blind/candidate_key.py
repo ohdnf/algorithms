@@ -8,7 +8,7 @@ def solution(relation):
 
     # 속성의 모든 부분 집합
     for i in range(1<<col_length):
-        new = [j for j in range(col_length+1) if i & (1<<j)]
+        new = [j for j in range(col_length) if i & (1<<j)]
         # print(candiadate)
         # 현재 키가 후보키를 포함하는지 최소성 검사
         for candidate in candidates:
