@@ -22,8 +22,8 @@ class Solution(object):
 
 # categorize by count
 class Solution:
-    def groupAnagrams(strs):
-        ans = collections.defaultdict(list)
+    def groupAnagrams(self, strs):
+        ans = defaultdict(list)
         for s in strs:
             count = [0] * 26
             for c in s:
