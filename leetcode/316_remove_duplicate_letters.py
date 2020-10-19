@@ -4,7 +4,7 @@ from collections import Counter
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
         stack = []
-        counter = collections.Counter(s)
+        counter = Counter(s)
 
         for letter in s:
             counter[letter] -= 1
@@ -16,8 +16,16 @@ class Solution:
 
         return ''.join(stack)
 
+    # 재귀
+    def removeDuplicateLetters(self, s: str) -> str:
+        for char in sorted(set(s)):
+            suffix = s[s.index(char):]
+            if set(s) == set(suffix):
+                return char + self.removeDuplicateLetters(suffix.replace(char, ''))
+        return ''
+
 
 if __name__ == '__main__':
-    s = Solution()
-    print(s.removeDuplicateLetters("bcabc"), "abc")
-    print(s.removeDuplicateLetters("cbacdcbc"), "acdb")
+    sol = Solution()
+    print(sol.removeDuplicateLetters("bcabc"), "abc")
+    print(sol.removeDuplicateLetters("cbacdcbc"), "acdb")
